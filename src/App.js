@@ -1,9 +1,12 @@
+import ContactList from "./Components/ContactList";
+import Navbar from "./Components/Navbar";
 
 
 function App() {
   return (
-    <div className="text-sm bg-slate-400 text-white">
-      Hello in tailwind
+    <div className="h-screen flex flex-col w-full">
+      <Navbar />
+      <ContactList />
     </div>
   );
 }
