@@ -7,7 +7,7 @@ const List = () => {
     const {contactList} = useSelector(contactSelector);
 
     return(
-        <div className="w-full md:w-1/2 xl:w-1/4 h-full bg-slate-400 flex flex-col flex-nowrap">
+        <div className="w-full md:w-[45%] h-fit flex flex-col flex-nowrap">
             {contactList.map((contact) => <ListItem contact={contact} />)}
         </div>
     )
