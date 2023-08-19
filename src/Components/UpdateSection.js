@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { contactSelector } from "../Redux/Reducers/contactReducer";
 
-const UpdateSection = ({showContact}) => {
-    const [formData, setFormData] = useState(showContact);
-    const [address,setAddress] = useState(showContact.address);
+const UpdateSection = () => {
+    const {showContact} = useSelector(contactSelector);
+    const [formData, setFormData] = useState({});
+    const [address,setAddress] = useState({});
+
+    useEffect(()=>{
+        setFormData(showContact);
+        setAddress(showContact.address);
+    },[showContact])
 
     const handleChange = (e) => {
         const {name,value} = e.target;
@@ -17,6 +25,11 @@ const UpdateSection = ({showContact}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         toast.success('Data updated!!');
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        toast.success('Contact Deleted');
     }
 
 
@@ -95,10 +108,13 @@ const UpdateSection = ({showContact}) => {
                             onChange={handleAddressChange} />
                     </td>
                 </tr>
-                <button>
-                    Update
-                </button>
             </table>
+            <button className="float-left">
+                Update
+            </button>
+            <button className="float-right" onClick={handleDelete}>
+                Delete
+            </button>
         </form>
     )
 }

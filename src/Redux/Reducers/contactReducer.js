@@ -21,6 +21,9 @@ const contactSlice = createSlice({
     initialState,
     reducers:{
         setShowContact:(state,action) => {
+            if(state.showAddContact){
+                state.showAddContact = null;
+            }
             state.showContact = action.payload;
         },
         setShowAddContact:(state,action) => {
