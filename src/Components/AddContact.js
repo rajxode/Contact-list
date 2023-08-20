@@ -59,7 +59,7 @@ const AddContact = () => {
     }
 
     return(
-        <div>
+        <div className="w-full">
             <form onSubmit={handleSubmit}>
             <table>
                 <tr>
@@ -79,7 +79,8 @@ const AddContact = () => {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            required />
+                            // required 
+                            />
                     </td>
                 </tr>
                 <tr>
@@ -88,7 +89,7 @@ const AddContact = () => {
                         <input type="text"
                             name="email"
                             value={formData.email}
-                            required
+                            // required
                             onChange={handleChange} />
                     </td>
                 </tr>
@@ -98,7 +99,7 @@ const AddContact = () => {
                         <input type="text"
                             name="suite"
                             value={address.suite}
-                            required
+                            // required
                             onChange={handleAddressChange} />
                     </td>
                 </tr>
@@ -108,7 +109,7 @@ const AddContact = () => {
                         <input type="text"
                             name="city"
                             value={address.city}
-                            required
+                            // required
                             onChange={handleAddressChange} />
                     </td>
                 </tr>
@@ -120,15 +121,15 @@ const AddContact = () => {
                         <input type="text"
                             name="zipcode"
                             value={address.zipcode}
-                            required
+                            // required
                             onChange={handleAddressChange} />
                     </td>
                 </tr>
             </table>
-            <button className="float-left">
+            <button className="float-left bg-indigo-500 text-white p-[2px] rounded">
                 Submit
             </button>
-            <button className="float-right" onClick={handleReset}>
+            <button className="float-right bg-red-500 text-white p-[2px] rounded" onClick={handleReset}>
                 Reset
             </button>
         </form>

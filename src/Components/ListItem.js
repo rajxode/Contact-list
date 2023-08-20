@@ -12,14 +12,17 @@ const ListItem = (props) => {
 
     return(
         <>
-        <div className="w-full flex justify-between h-12 cursor-pointer hover:bg-red-300 border-b-2 border-black p-2" 
+        <div className="w-full flex justify-between 
+                        h-12 cursor-pointer hover:bg-[#9F91CC] 
+                        border-b-2 border-black hover:border-[#5C4B99] 
+                        p-2 hover:text-white" 
             onClick={handleClick}>
             <div>
                 {name}
             </div>
 
             <div>
-                <small className="text-slate-400">
+                <small>
                     {phone}
                 </small>
             </div>

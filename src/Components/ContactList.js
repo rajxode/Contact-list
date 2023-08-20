@@ -13,7 +13,7 @@ const ContactList = () => {
     },[]);
 
     return(
-        <div className="w-full flex h-full">
+        <div className="w-full flex h-full overflow-hidden">
             <List />
             <MoreInfoSection />
         </div>
