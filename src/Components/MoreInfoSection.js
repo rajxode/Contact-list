@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { contactSelector, setShowAddContact, setShowContact } from "../Redux/Reducers/contactReducer";
+import { contactSelector, setShowAddContact,} from "../Redux/Reducers/contactReducer";
 
 import UpdateSection from "./UpdateSection";
 import AddContact from "./AddContact";
@@ -10,16 +10,18 @@ const MoreInfoSection = () => {
     const {showContact,showAddContact}  = useSelector(contactSelector);
 
     return(
-        <div className="hidden md:block w-full bg-indigo-300 p-2">
-            <span className="text-lg">
-                {showAddContact ? "Add Contact Page"
-                                : "More Info Page" }
-            </span>
-            <button className="rounded bg-gray-500 w-[100px] h-7 float-right" onClick={() => dispatch(setShowAddContact())}>
-                {showAddContact ? "Cancel"
-                                    : "Add Contact" }
-            </button>
-            <div className="flex flex-col h-fit">
+        <div className="hidden md:block rounded w-full h-fill bg-[#CEE6F3] m-2 p-2 shadow-md shadow-slate-400">
+            <div className="bg-white h-[40px] flex justify-between px-1 rounded items-center">
+                <span className="text-lg">
+                    {showAddContact ? "Add Contact Page"
+                                    : "More Info Page" }
+                </span>
+                <button className="rounded bg-[#A076F9] w-[100px] h-7 float-right text-white" onClick={() => dispatch(setShowAddContact())}>
+                    {showAddContact ? "Cancel"
+                                        : "Add Contact" }
+                </button>
+            </div>
+            <div className="flex justify-center items-center h-fill">
                 {!showContact 
                     ? 
                         <h2 className="self-center justify-self-center">
@@ -27,8 +29,7 @@ const MoreInfoSection = () => {
                         </h2>
                     :
                     <>
-                        <button onClick={() => dispatch(setShowContact(null))}>Close</button>
-                        <div className="w-2/3 bg-orange-300 h-2/3 mt-3 justify-self-center self-center">
+                        <div className="w-4/5 mt-3 justify-self-center self-center">
                             <UpdateSection showContact={showContact} />
                         </div>
                     </>
@@ -37,7 +38,9 @@ const MoreInfoSection = () => {
                     ?
                     null
                     :
-                    <AddContact />
+                    <div className="w-2/3 bg-orange-300 h-4/5 mt-3 justify-self-center self-center">
+                        <AddContact />
+                    </div>
                 }
             </div>
         </div>

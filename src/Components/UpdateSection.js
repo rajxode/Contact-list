@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { contactSelector, removeContact } from "../Redux/Reducers/contactReducer";
+import { contactSelector, removeContact, setShowContact } from "../Redux/Reducers/contactReducer";
 
 const UpdateSection = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const UpdateSection = () => {
 
     const handleChange = (e) => {
         const {name,value} = e.target;
-        setFormData({
+        setFormData({ 
             ...formData,
             [name]:value,
         })
@@ -27,11 +27,13 @@ const UpdateSection = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         toast.success('Data updated!!');
+        dispatch(setShowContact(null));
     }
 
     const handleDelete = (e) => {
         e.preventDefault();
         dispatch(removeContact(formData));
+        dispatch(setShowContact(null));
         toast.success('Contact Deleted');
     }
 
@@ -53,72 +55,82 @@ const UpdateSection = () => {
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <table>
-                <tr>
-                    <td><label for="name">Name</label></td>
-                    <td>
-                        <input type="text" 
-                            name="name" 
-                            value={formData.name} 
-                            onChange={handleChange}/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="phone">Phone</label></td>
-                    <td>
-                        <input type="text"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange} />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="email">Email</label></td>
-                    <td>
-                        <input type="text"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange} />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="suite">Suite:</label></td>
-                    <td>
-                        <input type="text"
-                            name="suite"
-                            value={address.suite}
-                            onChange={handleAddressChange} />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="city">City:</label></td>
-                    <td>
-                        <input type="text"
-                            name="city"
-                            value={address.city}
-                            onChange={handleAddressChange} />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="zipcode">ZipCode:</label>
-                    </td>
-                    <td>
-                        <input type="text"
-                            name="zipcode"
-                            value={address.zipcode}
-                            onChange={handleAddressChange} />
-                    </td>
-                </tr>
-            </table>
-            <button className="float-left">
+        <>
+            <button className="bg-red-500 px-[2px] w-5 text-white rounded" onClick={() => dispatch(setShowContact(null))}>
+                X
+            </button>
+            <div className="flex h-[200px] justify-center items-center ">
+                <div className="w-[200px] h-full bg-black"></div>
+            </div>
+            <div className="bg-yellow-100 p-2 rounded">
+                <form onSubmit={handleSubmit}>
+                    <table>
+                        <tr>
+                            <td><label for="name">Name</label></td>
+                            <td>
+                                <input type="text" 
+                                    name="name" 
+                                    value={formData.name} 
+                                    onChange={handleChange}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="phone">Phone</label></td>
+                            <td>
+                                <input type="text"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email</label></td>
+                            <td>
+                                <input type="text"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="suite">Suite:</label></td>
+                            <td>
+                                <input type="text"
+                                    name="suite"
+                                    value={address.suite}
+                                    onChange={handleAddressChange} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="city">City:</label></td>
+                            <td>
+                                <input type="text"
+                                    name="city"
+                                    value={address.city}
+                                    onChange={handleAddressChange} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="zipcode">ZipCode:</label>
+                            </td>
+                            <td>
+                                <input type="text"
+                                    name="zipcode"
+                                    value={address.zipcode}
+                                    onChange={handleAddressChange} />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <button className="float-left bg-green-200 rounded p-[2px] mt-1">
                 Update
             </button>
-            <button className="float-right" onClick={handleDelete}>
+            <button className="float-right bg-red-500 p-[2px] rounded mt-1" onClick={handleDelete}>
                 Delete
             </button>
-        </form>
+        </>
     )
 }
 

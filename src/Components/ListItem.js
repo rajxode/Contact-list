@@ -6,27 +6,25 @@ const ListItem = (props) => {
     const dispatch = useDispatch();
     const {name, phone} = props.contact;
 
-    const handleClick = () =>{
+    const handleClick = (e) =>{
         dispatch(setShowContact(props.contact));
     }
 
     return(
-        <div className="w-full flex justify-between h-16 md:h-12 border-b-2 border-black p-1" 
+        <>
+        <div className="w-full flex justify-between h-12 cursor-pointer hover:bg-red-300 border-b-2 border-black p-2" 
             onClick={handleClick}>
             <div>
                 {name}
-                <br />
-                <button className="rounded bg-[#b1d9fa] p-[2px] w-10 md:hidden">Edit</button>
             </div>
 
             <div>
                 <small className="text-slate-400">
                     {phone}
                 </small>
-                <br />
-                <button className="rounded bg-red-500 p-[2px] md:hidden float-right">Delete</button>
             </div>
         </div>
+        </>
     )
 }
 
