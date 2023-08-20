@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { addNewContact, contactSelector } from "../Redux/Reducers/contactReducer";
 
 const AddContact = () => {
-
+    const dispatch = useDispatch();
+    const {contactList} = useSelector(contactSelector);
     const inputStructure = {
+        id:`${contactList.length}`,
         name:'',
         email:'',
         phone:'',
@@ -17,17 +21,19 @@ const AddContact = () => {
     const [formData,setFormData]  = useState(inputStructure);
     const [address,setAddress] = useState(inputStructure.address);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        dispatch(addNewContact(formData));
+        toast.success('Submit !!');
+    }
+
     const handleChange = (e) => {
         const {name,value} = e.target;
         setFormData({
             ...formData,
             [name]:value,
         })
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        toast.success('Submit !!');
     }
 
     const handleReset = (e) => {
@@ -61,7 +67,8 @@ const AddContact = () => {
                     <td>
                         <input type="text" 
                             name="name" 
-                            value={formData.name} 
+                            value={formData.name}
+                            required 
                             onChange={handleChange}/>
                     </td>
                 </tr>
@@ -71,7 +78,8 @@ const AddContact = () => {
                         <input type="text"
                             name="phone"
                             value={formData.phone}
-                            onChange={handleChange} />
+                            onChange={handleChange}
+                            required />
                     </td>
                 </tr>
                 <tr>
@@ -80,6 +88,7 @@ const AddContact = () => {
                         <input type="text"
                             name="email"
                             value={formData.email}
+                            required
                             onChange={handleChange} />
                     </td>
                 </tr>
@@ -89,6 +98,7 @@ const AddContact = () => {
                         <input type="text"
                             name="suite"
                             value={address.suite}
+                            required
                             onChange={handleAddressChange} />
                     </td>
                 </tr>
@@ -98,6 +108,7 @@ const AddContact = () => {
                         <input type="text"
                             name="city"
                             value={address.city}
+                            required
                             onChange={handleAddressChange} />
                     </td>
                 </tr>
@@ -109,6 +120,7 @@ const AddContact = () => {
                         <input type="text"
                             name="zipcode"
                             value={address.zipcode}
+                            required
                             onChange={handleAddressChange} />
                     </td>
                 </tr>

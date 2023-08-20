@@ -31,6 +31,17 @@ const contactSlice = createSlice({
                 state.showContact = null;
             }
             state.showAddContact = !state.showAddContact;
+        },
+        addNewContact:(state,action) => {
+            const data = action.payload;
+            state.showAddContact = null;
+            state.contactList.push(data);
+        },
+        removeContact:(state,action) => {
+            state.showContact=null;
+            const data = action.payload;
+            const newList = state.contactList.filter((contact) => contact.id !== data.id);
+            state.contactList = newList;
         }
 
     },
@@ -43,6 +54,6 @@ const contactSlice = createSlice({
 
 export const contactReducer = contactSlice.reducer;
 
-export const { setShowContact, setShowAddContact} = contactSlice.actions;
+export const { setShowContact, setShowAddContact, addNewContact, removeContact} = contactSlice.actions;
 
 export const contactSelector = (state) => state.contactReducer;

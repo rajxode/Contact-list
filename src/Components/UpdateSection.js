@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { contactSelector } from "../Redux/Reducers/contactReducer";
+import { contactSelector, removeContact } from "../Redux/Reducers/contactReducer";
 
 const UpdateSection = () => {
+    const dispatch = useDispatch();
+
     const {showContact} = useSelector(contactSelector);
     const [formData, setFormData] = useState({});
     const [address,setAddress] = useState({});
@@ -29,6 +31,7 @@ const UpdateSection = () => {
 
     const handleDelete = (e) => {
         e.preventDefault();
+        dispatch(removeContact(formData));
         toast.success('Contact Deleted');
     }
 
