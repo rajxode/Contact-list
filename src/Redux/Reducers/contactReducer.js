@@ -1,7 +1,6 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit")
 
 const initialState = {contactList:[],
-                    isLoading:false,
                     showContact:null,
                     showAddContact:null};
 

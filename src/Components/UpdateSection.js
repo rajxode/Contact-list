@@ -28,14 +28,11 @@ const UpdateSection = () => {
         e.preventDefault();
         dispatch(updateContactThunk(formData));
         toast.success('Data updated!!');
-        dispatch(setShowContact(null));
     }
 
     const handleDelete = (e) => {
         e.preventDefault();
-        // dispatch(removeContact(formData));
         dispatch(deleteContactThunk(formData));
-        dispatch(setShowContact(null));
         toast.success('Contact Deleted');
     }
 
