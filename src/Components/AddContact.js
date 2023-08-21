@@ -43,6 +43,7 @@ const AddContact = () => {
     // to store the address of user
     const [address,setAddress] = useState(inputStructure.address);
 
+    
     // handle the form submission
     const handleSubmit = (e) => {
 
@@ -86,22 +87,6 @@ const AddContact = () => {
         });
     }
 
-    // to reset the form data
-    const handleReset = (e) => {
-        e.preventDefault();
-
-        // set to false so that user cannot submit the empty data
-        setIsChanged(false);
-
-        // setting data to initial Structure
-        setFormData(inputStructure);
-
-        // setting address to initial value
-        setAddress(inputStructure.address);
-        // toast notification
-        toast.success('Entered data is removed !!');
-    }
-
 
     // to store changes made inside the address section of the form
     const handleAddressChange = (e) => {
@@ -125,6 +110,23 @@ const AddContact = () => {
                 [name]:value
             }
         });
+    }
+
+
+    // to reset the form data
+    const handleReset = (e) => {
+        e.preventDefault();
+
+        // set to false so that user cannot submit the empty data
+        setIsChanged(false);
+
+        // setting data to initial Structure
+        setFormData(inputStructure);
+
+        // setting address to initial value
+        setAddress(inputStructure.address);
+        // toast notification
+        toast.success('Entered data is removed !!');
     }
 
 
