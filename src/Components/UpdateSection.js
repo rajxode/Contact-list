@@ -97,6 +97,12 @@ const UpdateSection = () => {
             return;
         }
 
+        // to check whether the contact contains a name and phone number
+        if(formData.name === '' || formData.phone === ''){
+            toast.error('Name / Phone cannot be empty');
+            return;
+        }
+
         e.preventDefault();
         // call the function for updating the contact data
         dispatch(updateContactThunk(formData));

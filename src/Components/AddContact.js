@@ -53,6 +53,12 @@ const AddContact = () => {
             return;
         }
 
+        // to check whether the contact contains a name and phone number
+        if(formData.name === '' || formData.phone === ''){
+            toast.error('Name / Phone cannot be empty');
+            return;
+        }
+
         // prevent default action
         e.preventDefault();
 
