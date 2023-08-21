@@ -56,7 +56,7 @@ const UpdateSection = () => {
 
     return(
         <>
-            <button className="bg-red-500 px-[2px] w-5 text-white rounded" onClick={() => dispatch(setShowContact(null))}>
+            <button className="bg-red-500 px-[2px] w-5 text-white rounded shadow-md" onClick={() => dispatch(setShowContact(null))}>
                 X
             </button>
             <div className="flex h-[200px] justify-center items-center m-2">
@@ -132,10 +132,10 @@ const UpdateSection = () => {
                     </table>
                 </form>
             </div>
-            <button className="float-left bg-blue-400 rounded text-white p-[2px] mt-1 shadow-sm">
+            <button className="float-left bg-blue-400 rounded text-white p-[2px] mt-1 shadow-md">
                 Update
             </button>
-            <button className="float-right bg-red-500 p-[2px] rounded text-white mt-1 shadow-sm" onClick={handleDelete}>
+            <button className="float-right bg-red-500 p-[2px] rounded text-white mt-1 shadow-md" onClick={handleDelete}>
                 Delete
             </button>
         </>

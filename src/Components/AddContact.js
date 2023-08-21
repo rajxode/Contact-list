@@ -23,7 +23,6 @@ const AddContact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
         dispatch(addNewContact(formData));
         toast.success('Submit !!');
     }
@@ -38,6 +37,8 @@ const AddContact = () => {
 
     const handleReset = (e) => {
         e.preventDefault();
+        setFormData(inputStructure);
+        setAddress(inputStructure.address);
         toast.success('Reset');
     }
 
@@ -59,81 +60,89 @@ const AddContact = () => {
     }
 
     return(
-        <div className="w-full">
-            <form onSubmit={handleSubmit}>
-            <table>
-                <tr>
-                    <td><label for="name">Name</label></td>
-                    <td>
-                        <input type="text" 
-                            name="name" 
-                            value={formData.name}
-                            required 
-                            onChange={handleChange}/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="phone">Phone</label></td>
-                    <td>
-                        <input type="text"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            // required 
-                            />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="email">Email</label></td>
-                    <td>
-                        <input type="text"
-                            name="email"
-                            value={formData.email}
-                            // required
-                            onChange={handleChange} />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="suite">Suite:</label></td>
-                    <td>
-                        <input type="text"
-                            name="suite"
-                            value={address.suite}
-                            // required
-                            onChange={handleAddressChange} />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="city">City:</label></td>
-                    <td>
-                        <input type="text"
-                            name="city"
-                            value={address.city}
-                            // required
-                            onChange={handleAddressChange} />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="zipcode">ZipCode:</label>
-                    </td>
-                    <td>
-                        <input type="text"
-                            name="zipcode"
-                            value={address.zipcode}
-                            // required
-                            onChange={handleAddressChange} />
-                    </td>
-                </tr>
-            </table>
-            <button className="float-left bg-indigo-500 text-white p-[2px] rounded">
-                Submit
-            </button>
-            <button className="float-right bg-red-500 text-white p-[2px] rounded" onClick={handleReset}>
-                Reset
-            </button>
-        </form>
+        <>
+            <div className="w-full bg-[#313866] p-2 rounded">
+                <form onSubmit={handleSubmit}>
+                <table className="border-separate border-spacing-2">
+                    <tr>
+                        <td><label for="name" className="text-white font-semibold">Name :</label></td>
+                        <td>
+                            <input type="text" 
+                                name="name" 
+                                value={formData.name}
+                                required 
+                                className="rounded-sm focus:outline-none focus:border-2 focus:border-[#6a88ee] "
+                                onChange={handleChange}/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="phone" className="text-white font-semibold">Phone :</label></td>
+                        <td>
+                            <input type="text"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                required 
+                                className="rounded-sm focus:outline-none focus:border-2 focus:border-[#6a88ee] "
+                                />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="email" className="text-white font-semibold">Email :</label></td>
+                        <td>
+                            <input type="text"
+                                name="email"
+                                value={formData.email}
+                                required
+                                className="rounded-sm focus:outline-none focus:border-2 focus:border-[#6a88ee] "
+                                onChange={handleChange} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="suite" className="text-white font-semibold">H. No. :</label></td>
+                        <td>
+                            <input type="text"
+                                name="suite"
+                                value={address.suite}
+                                required
+                                className="rounded-sm focus:outline-none focus:border-2 focus:border-[#6a88ee]"
+                                onChange={handleAddressChange} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="city" className="text-white font-semibold">City :</label></td>
+                        <td>
+                            <input type="text"
+                                name="city"
+                                value={address.city}
+                                required
+                                className="rounded-sm focus:outline-none focus:border-2 focus:border-[#6a88ee] "
+                                onChange={handleAddressChange} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="zipcode" className="text-white font-semibold">ZipCode :</label>
+                        </td>
+                        <td>
+                            <input type="text"
+                                name="zipcode"
+                                value={address.zipcode}
+                                className="rounded-sm focus:outline-none focus:border-2 focus:border-[#6a88ee] "
+                                required
+                                onChange={handleAddressChange} />
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
+        <button className="float-left bg-[#75C2F6] text-white p-[2px] mt-1 rounded shadow-md">
+            Submit
+        </button>
+        <button className="float-right bg-red-500 text-white p-[2px] mt-1 rounded shadow-md" onClick={handleReset}>
+            Reset
+        </button>
+    </>
     )
 }
 

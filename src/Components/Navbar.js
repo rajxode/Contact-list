@@ -8,7 +8,9 @@ const Navbar = () => {
 
     return(
         <div className="bg-[#1D5D9B] h-[50px] flex justify-between md:justify-center items-center px-1 sticky left-0 top-0 right-0">
-            <h1 className="text-white text-lg">Contact List</h1>
+            <h1 className="text-white text-lg">
+                Contact List
+            </h1>
             <button className="bg-green-300 rounded p-[2px] md:hidden" onClick={() => dispatch(setShowAddContact())}>
                 {showAddContact ? "Cancel"
                                     : "Add Contact" }

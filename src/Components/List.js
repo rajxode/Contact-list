@@ -14,7 +14,7 @@ const List = () => {
                         w-full h-fill md:border-r-2 shadow-md
                          shadow-slate-400">
 
-            <div className="w-fill md:hidden bg-[#FFC6AC] h-fit mb-2">
+            <div className="w-fill md:hidden h-fit mb-2 border-b-2">
                 {showContact ? <UpdateSection /> : null}
                 {showAddContact ? <AddContact /> : null}
             </div>
