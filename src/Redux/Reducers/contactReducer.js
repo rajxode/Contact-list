@@ -16,6 +16,53 @@ export const contactThunk = createAsyncThunk(
 )
 
 
+export const addContactThunk = createAsyncThunk(
+    'contact/createContact',
+    async(args,thunkAPI) => {
+        fetch('https://jsonplaceholder.typicode.com/users', {
+        method: 'POST',
+        body: JSON.stringify(
+            args
+        ),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        return args;
+    }
+)
+
+export const deleteContactThunk = createAsyncThunk(
+    'contact/deleteContact',
+    async(args,thunkAPI) => {
+        fetch(`https://jsonplaceholder.typicode.com/`, {
+            method: 'DELETE',
+        });
+        return args;
+    }
+)
+
+
+export const updateContactThunk = createAsyncThunk(
+    'contact/updateContact',
+    async(args,thunkAPI) => {
+        fetch('https://jsonplaceholder.typicode.com/users', {
+        method: 'POST',
+        body: JSON.stringify(
+            args
+        ),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json());
+        return args;
+    }
+)
+
+
+
 const contactSlice = createSlice({
     name:'ContactList',
     initialState,
@@ -32,22 +79,27 @@ const contactSlice = createSlice({
             }
             state.showAddContact = !state.showAddContact;
         },
-        addNewContact:(state,action) => {
-            const data = action.payload;
-            state.showAddContact = null;
-            state.contactList.push(data);
-        },
-        removeContact:(state,action) => {
-            state.showContact=null;
-            const data = action.payload;
-            const newList = state.contactList.filter((contact) => contact.id !== data.id);
-            state.contactList = newList;
-        }
-
     },
     extraReducers:(builder) => {
         builder.addCase(contactThunk.fulfilled,(state,action) => {
             state.contactList = [...action.payload];
+        })
+        .addCase(addContactThunk.fulfilled,(state,action) => {
+            state.contactList.push(action.payload);
+            state.showAddContact=null;
+        })
+        .addCase(updateContactThunk.fulfilled,(state,action) => {
+            const data = action.payload;
+            const newList = state.contactList.filter((contact) => contact.id !== data.id);
+            state.contactList = newList;
+            state.contactList.push(data);
+            state.showContact=null;
+        })
+        .addCase(deleteContactThunk.fulfilled,(state,action) => {
+            const data = action.payload;
+            const newList = state.contactList.filter((contact) => contact.id !== data.id);
+            state.contactList = newList;
+            state.showContact=null;
         })
     }
 })

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addNewContact, contactSelector } from "../Redux/Reducers/contactReducer";
+import { addNewContact, contactSelector, addContactThunk } from "../Redux/Reducers/contactReducer";
 
 const AddContact = () => {
     const dispatch = useDispatch();
@@ -18,12 +18,13 @@ const AddContact = () => {
             zipcode:''
         }
     };
+
     const [formData,setFormData]  = useState(inputStructure);
     const [address,setAddress] = useState(inputStructure.address);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addNewContact(formData));
+        dispatch(addContactThunk(formData));
         toast.success('Submit !!');
     }
 
@@ -60,9 +61,9 @@ const AddContact = () => {
     }
 
     return(
-        <>
-            <div className="w-full bg-[#313866] p-2 rounded">
-                <form onSubmit={handleSubmit}>
+    <>
+        <div className="w-full bg-[#313866] p-2 rounded">
+            <form onSubmit={handleSubmit}>
                 <table className="border-separate border-spacing-2">
                     <tr>
                         <td><label for="name" className="text-white font-semibold">Name :</label></td>
@@ -136,7 +137,7 @@ const AddContact = () => {
                 </table>
             </form>
         </div>
-        <button className="float-left bg-[#75C2F6] text-white p-[2px] mt-1 rounded shadow-md">
+        <button className="float-left bg-[#75C2F6] text-white p-[2px] mt-1 rounded shadow-md" onClick={handleSubmit}>
             Submit
         </button>
         <button className="float-right bg-red-500 text-white p-[2px] mt-1 rounded shadow-md" onClick={handleReset}>

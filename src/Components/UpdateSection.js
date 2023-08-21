@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { contactSelector, removeContact, setShowContact } from "../Redux/Reducers/contactReducer";
+import { contactSelector, deleteContactThunk, removeContact, setShowContact, updateContactThunk } from "../Redux/Reducers/contactReducer";
 
 const UpdateSection = () => {
     const dispatch = useDispatch();
@@ -26,13 +26,15 @@ const UpdateSection = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(updateContactThunk(formData));
         toast.success('Data updated!!');
         dispatch(setShowContact(null));
     }
 
     const handleDelete = (e) => {
         e.preventDefault();
-        dispatch(removeContact(formData));
+        // dispatch(removeContact(formData));
+        dispatch(deleteContactThunk(formData));
         dispatch(setShowContact(null));
         toast.success('Contact Deleted');
     }
@@ -132,7 +134,7 @@ const UpdateSection = () => {
                     </table>
                 </form>
             </div>
-            <button className="float-left bg-blue-400 rounded text-white p-[2px] mt-1 shadow-md">
+            <button className="float-left bg-blue-400 rounded text-white p-[2px] mt-1 shadow-md" onClick={handleSubmit}>
                 Update
             </button>
             <button className="float-right bg-red-500 p-[2px] rounded text-white mt-1 shadow-md" onClick={handleDelete}>
