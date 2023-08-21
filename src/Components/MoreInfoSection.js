@@ -39,6 +39,7 @@ const MoreInfoSection = () => {
                     null
                     :
                     <div className="w-4/5 mt-3 justify-self-center self-center bg-[#F8F0E5] rounded shadow-md p-2">
+                        <h1 className="text-lg font-semibold my-2 text-center">Add Contact Page</h1>
                         <AddContact />
                     </div>
                 }
