@@ -60,7 +60,7 @@ export const updateContactThunk = createAsyncThunk(
     'contact/updateContact',
     async(args,thunkAPI) => {
         fetch('https://jsonplaceholder.typicode.com/users', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(
             args
         ),
