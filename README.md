@@ -25,3 +25,13 @@
   - JavaScript
   - React-Toastify
   - HTML
+# ScreenShots:
+  ![contact1](https://github.com/rajxode/Contact-list/assets/120395470/a3d76354-16d8-42d3-9237-847b25e2f703)
+
+  ![contact2](https://github.com/rajxode/Contact-list/assets/120395470/d47d8924-2870-4ecb-9bb2-7be2d09ed4e0)
+
+  ![contact3](https://github.com/rajxode/Contact-list/assets/120395470/6206b049-5ad0-4520-b7d4-f2e2b89e1f59)
+
+  ![contact4](https://github.com/rajxode/Contact-list/assets/120395470/7130688a-9699-4558-9321-dd47dfefd6a2)
+
+  
